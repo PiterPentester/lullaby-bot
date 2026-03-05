@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lullaby-bot
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lullaby-bot
+  template:
+    metadata:
+      labels:
+        app: lullaby-bot
+    spec:
+      containers:
+      - name: bot
+        image: ghcr.io/piterpentester/lullaby-bot:latest
+        imagePullPolicy: Always
+        env:
+        - name: TELEGRAM_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: lullaby-secrets
+              key: token
+        - name: AUTHORIZED_USER_IDS
+          valueFrom:
+            secretKeyRef:
+              name: lullaby-secrets
+              key: authorized_ids
+        - name: HOST_ROOT
+          value: /host
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: host-root
+          mountPath: /host
+      volumes:
+      - name: host-root
+        hostPath:
+          path: /
+          type: Directory
