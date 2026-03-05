@@ -11,7 +11,7 @@ RUN go mod download
 COPY . .
 
 # Build for the target architecture (ARM64 for Orange Pi 5)
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o /app/bot cmd/bot/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o /app/bot ./cmd/bot/main.go
 
 # Production stage
 FROM alpine:3.18

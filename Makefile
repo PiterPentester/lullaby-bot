@@ -4,7 +4,7 @@ APP_NAME = lullaby-bot
 DOCKER_IMAGE = $(APP_NAME):latest
 
 build:
-	go build -o bin/lullaby-bot cmd/bot/main.go
+	go build -o bin/lullaby-bot ./cmd/bot/main.go
 
 test:
 	go test ./...
