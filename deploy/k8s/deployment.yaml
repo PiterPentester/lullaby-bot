@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: bot
-        image: ghcr.io/piterpentester/lullaby-bot:latest
+        image: ghcr.io/piterpentester/lullaby-bot:205f761
         imagePullPolicy: Always
         env:
         - name: TELEGRAM_BOT_TOKEN
