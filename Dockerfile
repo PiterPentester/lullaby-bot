@@ -8,7 +8,8 @@ RUN apk add --no-cache git
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY . .
+COPY cmd/ ./cmd/
+COPY internal/ ./internal/
 
 # Build for the target architecture (ARM64 for Orange Pi 5)
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o /app/bot ./cmd/bot/main.go

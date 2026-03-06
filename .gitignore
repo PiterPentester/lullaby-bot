@@ -20,7 +20,6 @@ go.work.sum
 
 # Custom Binaries
 bin/
-bot
 
 # Kubernetes Secrets
 deploy/k8s/secret.yaml
